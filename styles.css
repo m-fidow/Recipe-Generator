@@ -3,6 +3,7 @@ body {
   padding: 0;
   box-sizing: border-box;
   width: 100%;
+  font-family: "Roboto", sans-serif;
 }
 main {
   display: flex;
@@ -36,4 +37,11 @@ header {
 }
 .recipe-calories {
   padding: 10px;
+}
+#recipe-label {
+  color: green;
+  text-decoration: none;
+}
+#recipe-label a:hover {
+  color: pink;
 }

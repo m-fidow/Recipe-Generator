@@ -47,6 +47,8 @@ const requestUrl = `https://api.edamam.com/search?q=kale&app_id=ac4c321f&app_key
 
 let foodToSearch = null;
 let recipeLabel = document.querySelector("#recipe-label");
+let recipeCalories = document.querySelector("span");
+
 let hrefOfRecipeLabel = document.querySelector("#recipe-label");
 function handleRecipeClick() {
   fetchRecipe(foodToSearch);
@@ -72,5 +74,8 @@ async function fetchRecipe(food) {
   let recipeUrl = firstRecipe.recipe.url;
   recipeLabel.setAttribute("href", recipeUrl);
   console.log(recipeUrl);
+  //Change innerText of span
+  recipeCalories.innerHTML = Math.round(firstRecipe.recipe.calories);
+  console.log(data.hits[0].recipe.calories);
   //--- write your code above ---
 }
