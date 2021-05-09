@@ -12,11 +12,28 @@ main {
 
   width: 85%;
   margin: 0 auto;
-  background-color: aliceblue;
+  background-color: hotpink;
 }
 header {
   align-self: center;
 }
 .input {
   align-self: center;
+}
+#recipe-section {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  padding: 20px;
+}
+.recipe-card {
+  background-color: white;
+}
+.recipe-card-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.recipe-calories {
+  padding: 10px;
 }
