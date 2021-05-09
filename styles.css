@@ -5,7 +5,18 @@ body {
   width: 100%;
 }
 main {
-  width: 95%;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  /* align-items: center; */
+
+  width: 85%;
   margin: 0 auto;
-  background-color: red;
+  background-color: aliceblue;
+}
+header {
+  align-self: center;
+}
+.input {
+  align-self: center;
 }
