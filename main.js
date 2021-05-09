@@ -46,7 +46,7 @@ const YOUR_APP_KEY = "90ba872d5ada15d1e7ae658122a03d3b";
 const requestUrl = `https://api.edamam.com/search?q=kale&app_id=ac4c321f&app_key=90ba872d5ada15d1e7ae658122a03d3b`;
 
 let foodToSearch = null;
-
+let recipeLabel = document.querySelector("#recipe-label");
 function handleRecipeClick() {
   fetchRecipe(foodToSearch);
 }
@@ -57,12 +57,13 @@ function handleFoodChange() {
 
 async function fetchRecipe(food) {
   //--- write your code below ---
-  let response = await fetch(
+  const response = await fetch(
     `https://api.edamam.com/search?q=${foodToSearch}&app_id=ac4c321f&app_key=90ba872d5ada15d1e7ae658122a03d3b`
   );
-  let data = await response.json();
+  const data = await response.json();
   let firstRecipe = data.hits[0];
-
-  console.log(data.hits[0]);
+  let recipeLabelText = data.hits[0].recipe.label;
+  recipeLabel.innerHTML = recipeLabelText;
+  console.log(recipeLabel);
   //--- write your code above ---
 }
