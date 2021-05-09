@@ -1,3 +1,4 @@
+/\*
 Phase 1
 
 1. Use the fetchRecipe function to make a fetch request
@@ -9,8 +10,31 @@ Phase 1
    with the id #recipe-link to be the recipe label from the data you receive.
 4. Then set the href of #recipe-link to be the recipe's url,
    also from the received data.
-   Phase 2
-5. Can you add images, ingredients or other information to your page
-6. Can you have more than one recipe appear on the page
-   with the information so people can pick from a selection
-7. Add a CSS file and style your page appropriately.
+
+PSEUDOCODE
+//Phase 1.1
+IN FUNCTION FETCH_RECIPE
+
+- AWAIT FETCH RESPONSE WITH URL
+  - USE STRING INTERPOLATION TO INJECT FOOD_TO_SEARCH
+- SET AS RESPONSE
+- AWAIT RESPONSE
+- APPLY JSON() METHOD TO RETRIEVE JS OBJECT
+- SET AS DATA
+  //Phase 1.2
+- RETURN FIRST HIT OF DATA ARRAY
+- SET ASS FIRST_RECIPE
+- RETURN FIRST_RECIPE
+  //Phase 1.3
+  SELECT A TAG WITH ID #recipe-link IN THE DOM
+  SET AS RECIPE_LINK
+  RETURN RECIPE LABEL FROM THE FUNCTION
+  SET AS RECIPE_LABEL
+  ASSIGN RECIPE_LABEL TO INNERHTML OF RECIPE_LINK
+  //Phase 1.4
+  ADD HREF TO A TAG WITH ID #recipe-link
+  GET RECIPE URL FROM DATA ARRAY
+  SET AS RECIPE_URL
+  SET HREF ATTRIBUTE TO RECIPE_URL
+
+\*/

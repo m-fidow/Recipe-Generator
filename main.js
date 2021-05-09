@@ -11,6 +11,7 @@ with the id #recipe-link to be the recipe label from the data you receive.
  also from the received data.
 
 PSEUDOCODE
+//Phase 1.1
 IN FUNCTION FETCH_RECIPE
   - AWAIT FETCH RESPONSE WITH URL
     - USE STRING INTERPOLATION TO INJECT FOOD_TO_SEARCH
@@ -18,9 +19,22 @@ IN FUNCTION FETCH_RECIPE
   - AWAIT RESPONSE 
   - APPLY JSON() METHOD TO RETRIEVE JS OBJECT
   - SET AS DATA
+  //Phase 1.2
   - RETURN FIRST HIT OF DATA ARRAY
   - SET ASS FIRST_RECIPE
   - RETURN FIRST_RECIPE
+//Phase 1.3
+SELECT A TAG WITH ID #recipe-link IN THE DOM
+  SET AS RECIPE_LINK
+  RETURN RECIPE LABEL FROM THE FUNCTION
+  SET AS RECIPE_LABEL
+  ASSIGN RECIPE_LABEL TO INNERHTML OF RECIPE_LINK
+//Phase 1.4
+ADD HREF TO A TAG WITH ID #recipe-link
+GET RECIPE URL FROM DATA ARRAY
+SET AS RECIPE_URL
+SET HREF ATTRIBUTE TO RECIPE_URL
+
 
 
 
@@ -49,6 +63,6 @@ async function fetchRecipe(food) {
   let data = await response.json();
   let firstRecipe = data.hits[0];
 
-  console.log(firstRecipe);
+  console.log(data.hits[0]);
   //--- write your code above ---
 }
