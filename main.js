@@ -70,7 +70,7 @@ async function fetchRecipe(food) {
     `https://api.edamam.com/search?q=${foodToSearch}&app_id=${YOUR_APP_ID}&app_key=${YOUR_APP_KEY}`
   );
   let { hits } = await response.json();
-  for (let i = 0; i < 9; i++) {
+  for (let i = 0; i < hits.length; i++) {
     displayRecipeResults(hits[i].recipe);
   }
 }
