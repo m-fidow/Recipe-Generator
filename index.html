@@ -12,11 +12,9 @@
     />
   </head>
   <body>
-    <main>
-      <header>
-        <h1 class="section-heading">Welcome to the Recipe Finder!</h1>
-      </header>
-      <section class="input">
+    <header>
+      <h1 class="section-heading">Welcome to the Recipe Finder!</h1>
+      <div class="input">
         <input
           aria-label="food-input"
           id="food-input"
@@ -25,12 +23,34 @@
         <button id="recipe-button" onclick="handleRecipeClick()">
           Give me a recipe!
         </button>
-      </section>
-      <section class="recipe-type-title">
-        <h2>Salmon Recipe</h2>
+      </div>
+    </header>
+
+    <main>
+      <section>
+        <h2 class="recipe-type-title"></h2>
       </section>
       <section id="recipe-section">
-        <div class="recipe-card">
+        <!-- <div class="recipe-card"> -->
+        <!-- <div class="recipe-card-header">
+            <h2><a id="recipe-label">Recipe label</a></h2>
+            <p class="recipe-calories"><span>350</span> Calories</p>
+          </div>
+          <div class="recipe-card-image">
+            <img id="recipe-image" alt="" />
+          </div>
+          <div class="recipe-card-ingredients">
+            <ul>
+              <li>First ingredient</li>
+              <li>Second ingredient</li>
+              <li>Third ingredient</li>
+              <li>Fourth ingredient</li>
+              <li>Fifth ingredient</li>
+            </ul>
+          </div>
+        </div> -->
+
+        <!-- <div class="recipe-card">
           <div class="recipe-card-header">
             <h2><a id="recipe-label">Recipe label</a></h2>
             <p class="recipe-calories"><span>350</span> Calories</p>
@@ -65,25 +85,7 @@
               <li>Fifth ingredient</li>
             </ul>
           </div>
-        </div>
-        <div class="recipe-card">
-          <div class="recipe-card-header">
-            <h2><a id="recipe-label">Recipe label</a></h2>
-            <p class="recipe-calories"><span>350</span> Calories</p>
-          </div>
-          <div class="recipe-card-image">
-            <img id="recipe-image" alt="" />
-          </div>
-          <div class="recipe-card-ingredients">
-            <ul>
-              <li>First ingredient</li>
-              <li>Second ingredient</li>
-              <li>Third ingredient</li>
-              <li>Fourth ingredient</li>
-              <li>Fifth ingredient</li>
-            </ul>
-          </div>
-        </div>
+        </div> -->
       </section>
     </main>
 

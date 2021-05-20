@@ -43,15 +43,20 @@ SET HREF ATTRIBUTE TO RECIPE_URL
 const YOUR_APP_ID = "ac4c321f";
 const YOUR_APP_KEY = "90ba872d5ada15d1e7ae658122a03d3b";
 
-const requestUrl = `https://api.edamam.com/search?q=kale&app_id=ac4c321f&app_key=90ba872d5ada15d1e7ae658122a03d3b`;
+const requestUrl = `https://api.edamam.com/search?q=kale&app_id=${YOUR_APP_ID}&app_key=${YOUR_APP_KEY}`;
 
 let foodToSearch = null;
-let recipeLabel = document.querySelector("#recipe-label");
-let recipeCalories = document.querySelector("span");
 
-let hrefOfRecipeLabel = document.querySelector("#recipe-label");
+let recipeSection = document.querySelector("#recipe-section");
+
+// let recipeLabel = document.querySelector("#recipe-label");
 function handleRecipeClick() {
+  recipeSection.innerHTML = "";
   fetchRecipe(foodToSearch);
+  let recipeTypeTitle = document.querySelector(".recipe-type-title");
+  recipeTypeTitle.innerHTML = `${foodToSearch.toUpperCase()} RECIPES`;
+  let main = document.querySelector("main");
+  main.classList.add("flex");
 }
 
 function handleFoodChange() {
@@ -62,20 +67,56 @@ async function fetchRecipe(food) {
   //--- write your code below ---
   // Fetch data from API
   const response = await fetch(
-    `https://api.edamam.com/search?q=${foodToSearch}&app_id=ac4c321f&app_key=90ba872d5ada15d1e7ae658122a03d3b`
+    `https://api.edamam.com/search?q=${foodToSearch}&app_id=${YOUR_APP_ID}&app_key=${YOUR_APP_KEY}`
   );
-  const data = await response.json();
-  //First recipe
-  let firstRecipe = data.hits[0];
-  //Display recipe label
-  let recipeLabelText = firstRecipe.recipe.label;
-  recipeLabel.innerHTML = recipeLabelText;
-  //Set href attribute of recipe label
-  let recipeUrl = firstRecipe.recipe.url;
-  recipeLabel.setAttribute("href", recipeUrl);
-  console.log(recipeUrl);
-  //Change innerText of span
-  recipeCalories.innerHTML = Math.round(firstRecipe.recipe.calories);
-  console.log(data.hits[0].recipe.calories);
-  //--- write your code above ---
+  let { hits } = await response.json();
+  for (let i = 0; i < 9; i++) {
+    displayRecipeResults(hits[i].recipe);
+  }
+}
+function displayRecipeResults(recipe) {
+  //create recipe card div
+  let recipeCard = document.createElement("div");
+  recipeCard.setAttribute("class", "recipe-card");
+  recipeSection.appendChild(recipeCard);
+  //create recipe card header div
+  let recipeCardHeader = document.createElement("div");
+  recipeCardHeader.setAttribute("class", "recipe-card-header");
+  recipeCard.appendChild(recipeCardHeader);
+  //create recipe h3element inside recipe card header div
+  let recipeLabelH3 = document.createElement("h3");
+  recipeCardHeader.appendChild(recipeLabelH3);
+  //create link inside h2
+  let recipeLabelLink = document.createElement("a");
+  recipeLabelLink.setAttribute("href", `${recipe.url}`);
+  recipeLabelLink.innerHTML = recipe.label;
+  recipeLabelH3.appendChild(recipeLabelLink);
+  //create recipe calories p element with span inside recipe card header div
+  // create span
+  let recipeCaloriesSpan = document.createElement("span");
+  let recipeCaloriesSpanText = Math.floor(recipe.calories);
+  let recipeCalories = document.createElement("p");
+  recipeCalories.innerHTML = `${recipeCaloriesSpanText} Calories`;
+  recipeCalories.setAttribute("class", "recipe-calories");
+  recipeCardHeader.appendChild(recipeCalories);
+  recipeCalories.appendChild(recipeCaloriesSpan);
+  //create recipe card image div
+  let recipeCardImageDiv = document.createElement("div");
+  recipeCardImageDiv.setAttribute("class", "recipe-card-image");
+  recipeCardImageDiv.setAttribute(
+    "style",
+    `background-image: url(${recipe.image});`
+  );
+  recipeCard.appendChild(recipeCardImageDiv);
+  //create ingredient div
+  let recipeCardIngredientDiv = document.createElement("div");
+  let recipeCardIngredientList = document.createElement("ul");
+  let recipeCardIngredientsArray = recipe.ingredients;
+  for (let i = 0; i < recipeCardIngredientsArray.length; i++) {
+    let ingredient = document.createElement("li");
+    ingredient.innerHTML = recipeCardIngredientsArray[i].text;
+    recipeCardIngredientList.appendChild(ingredient);
+  }
+  recipeCard.appendChild(recipeCardIngredientDiv);
+  recipeCardIngredientDiv.appendChild(recipeCardIngredientList);
 }
